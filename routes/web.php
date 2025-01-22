@@ -73,7 +73,7 @@ Route::get('/' ,function (){
 
 Route::get('/tasks',function (){
     return view('index', [
-     'tasks' =>Task::all()
+     'tasks' =>Task::latest()->paginate(10)
      //'tasks' =>\App\Models\Task::latest()->where('completed',true)->get()
     ]);
 })->name('tasks.index');
@@ -105,12 +105,17 @@ Route::put('/tasks/{task}', function (Task $task,TaskRequest $request){
         ->with('success','Task updated successfully.');
 })->name('tasks.update');
 
-Route::delete('taks/{task}',function (Task $task){
-$task->delete();
-return redirect()->route('tasks.index')
-    ->with('success','Task deleted successfully.');
+Route::delete('tasks/{task}',function (Task $task){
+    $task->delete();
+    return redirect()->route('tasks.index')
+        ->with('success','Task deleted successfully.');
 })->name('tasks.destroy');
 
+Route::put('tasks/{task}/toggle-complete',function (Task $task){
+    $task->toggleComplete();
+
+    return redirect()->back()->with('success','Task updated successfully!');
+})->name('tasks.toggle-complete');
 
 //Route::get('/tasks/{id}',function ($id) use ($tasks){
 //    $task = collect($tasks)->firstWhere('id',$id);
