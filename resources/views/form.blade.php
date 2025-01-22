@@ -46,6 +46,4 @@
             <a href="{{route('tasks.index')}}" class="link ">Cancel</a>
         </div>
     </form>
-
-
 @endsection
