@@ -5,8 +5,8 @@
 </p>
 
 <p align="center">
-  <img src="public/img/task-web.png" width="400" alt="Task App Screenshot">
-  <img src="public/img/task-web2.png" width="400" alt="Task App Screenshot">
+<img src="{{ asset('img/web.png') }}" alt="Task Screenshot">
+<img src="{{ asset('img/web2.png') }}" alt="Task Screenshot-2">
 
 </p>
 
